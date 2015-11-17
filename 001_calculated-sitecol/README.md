@@ -20,3 +20,5 @@ What works is:
 4. Add our two columns to that content type
 5. Add a generic list
 6. Add our content type to our list
+
+The whole code is in the [Program.cs file](CalculatedSiteColumn/Program.cs)
