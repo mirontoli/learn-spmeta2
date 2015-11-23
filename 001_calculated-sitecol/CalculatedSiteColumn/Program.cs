@@ -14,7 +14,7 @@ namespace CalculatedSiteColumn
     {
         static void Main(string[] args)
         {
-            var siteUrl = "http://dev";
+            var siteUrl = "https://staging-nps.skanska.net/sites/jsomtest/tolle";
             var context = new ClientContext(siteUrl);
             var provisionService = new CSOMProvisionService();
             var model = GetModel();
@@ -47,14 +47,19 @@ namespace CalculatedSiteColumn
                         {
                             list
                                 .AddContentTypeLink(SimpleContenType);
+                            
+                        });
+                        web.AddHostContentType(SimpleContenType, ct =>
+                        {
+                            ct.AddContentTypeFieldLink(SimpleCalculatedField);
                         });
                     });
             });
         }
         
         private static string group = "Learn SPMeta2";
-        private static string subWebUrl = "calc09";
-        private static uint lcid = 1033;
+        private static string subWebUrl = "calc15";
+        private static uint lcid = 1053;
         private static string simpleTextFieldInternalName = "Tolle_SimpleTextField";
         private static string simpleTextFieldTitle = "Simple Text Field";
         private static string calculatedInternalName = "Tolle_Calculated";
@@ -80,7 +85,7 @@ namespace CalculatedSiteColumn
         {
             Id = Guid.NewGuid(),
             Title = simpleTextFieldTitle,
-            InternalName = "Tolle_SimpleTextField",
+            InternalName = simpleTextFieldInternalName,
             Group = group,
             Description = "",
             AddToDefaultView = true,
@@ -99,7 +104,8 @@ namespace CalculatedSiteColumn
             FieldReferences = new Collection<string> { $"{simpleTextFieldInternalName}" },
             Formula = $"=IF([{simpleTextFieldInternalName}]={quote}hello{quote}, 1)",
             OutputType = BuiltInFieldTypes.Number,
-            AddFieldOptions = BuiltInAddFieldOptions.AddFieldInternalNameHint,
+            //AddFieldOptions = BuiltInAddFieldOptions.AddFieldInternalNameHint,
+            AddFieldOptions = BuiltInAddFieldOptions.AddFieldCheckDisplayName,
             AddToDefaultView = true
         };
 
