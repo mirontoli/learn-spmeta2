@@ -13,7 +13,7 @@ namespace BuiltInViews
     {
         static void Main(string[] args)
         {
-            var siteUrl = "http://dev";
+            var siteUrl = "https://staging-nps.skanska.net/sites/jsomtest/tolle/"; // "http://dev";
             var context = new ClientContext(siteUrl);
             var provisionService = new CSOMProvisionService();
             var model = GetModel();
@@ -30,34 +30,18 @@ namespace BuiltInViews
                             .AddList(SimpleList1, list =>
                             {
                                 list
-                                    .AddListView(BuiltInListViewDefinitions.Lists.AllItems, listView =>
-                                    {
-                                        var definition = listView.Value as ListViewDefinition;
-                                        definition.Fields = new Collection<string>
-                                        {
-                                            BuiltInInternalFieldNames.LinkTitle,
-                                            BuiltInInternalFieldNames.ID  
-                                        };
-                                    });
+                                    .AddListView(SimpleView1);
                             })
                             .AddList(SimpleList2, list =>
                             {
                                 list
-                                    .AddListView(BuiltInListViewDefinitions.Lists.AllItems, listView =>
-                                    {
-                                        var definition = listView.Value as ListViewDefinition;
-                                        definition.Fields = new Collection<string>
-                                        {
-                                            BuiltInInternalFieldNames.LinkTitle,
-                                            BuiltInInternalFieldNames.Modified
-                                        };
-                                    });
+                                    .AddListView(SimpleView2);
                             });
                     });
             });
         }
         private static string group = "Learn SPMeta2";
-        private static string subWebUrl = "views09";
+        private static string subWebUrl = "views11";
         private static string listTitle1 = "Simple List 1";
         private static string listTitle2 = "Simple List 2";
         private static uint lcid = 1033;
@@ -86,5 +70,19 @@ namespace BuiltInViews
             TemplateType = BuiltInListTemplateTypeId.GenericList,
             OnQuickLaunch = false
         };
+        public static ListViewDefinition SimpleView1 = BuiltInListViewDefinitions.Lists.AllItems.Inherit(listView => {
+            listView.Fields = new Collection<string>
+            {
+                BuiltInInternalFieldNames.LinkTitle,
+                BuiltInInternalFieldNames.ID
+            };
+        });
+        public static ListViewDefinition SimpleView2 = BuiltInListViewDefinitions.Lists.AllItems.Inherit(listView => {
+            listView.Fields = new Collection<string>
+            {
+                BuiltInInternalFieldNames.LinkTitle,
+                BuiltInInternalFieldNames.Modified
+            };
+        });
     }
 }
