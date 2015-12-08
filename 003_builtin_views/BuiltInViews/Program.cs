@@ -77,7 +77,8 @@ namespace BuiltInViews
                 BuiltInInternalFieldNames.ID
             };
         });
-        public static ListViewDefinition SimpleView2 = BuiltInListViewDefinitions.Lists.AllItems.Inherit(listView => {
+        public static ListViewDefinition SimpleView2 
+            = BuiltInListViewDefinitions.Lists.AllItems.Inherit(listView => {
             listView.Fields = new Collection<string>
             {
                 BuiltInInternalFieldNames.LinkTitle,
