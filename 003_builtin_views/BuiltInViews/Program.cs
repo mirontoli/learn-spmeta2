@@ -13,7 +13,7 @@ namespace BuiltInViews
     {
         static void Main(string[] args)
         {
-            var siteUrl = "https://staging-nps.skanska.net/sites/jsomtest/tolle/"; // "http://dev";
+            var siteUrl = "http://dev";
             var context = new ClientContext(siteUrl);
             var provisionService = new CSOMProvisionService();
             var model = GetModel();
