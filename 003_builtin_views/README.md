@@ -7,3 +7,4 @@ Add two generic lists, update "All Items" list views. The first list contains Ti
 
 ## Solution
 Use Inherit on listview and define listview separately to have a better code structure. More info on [SPMeta2 yammer network](https://www.yammer.com/spmeta2feedback/#/Threads/show?threadId=625092745)
+![solution](built-in-views-002.png?raw=true)
